@@ -29,6 +29,10 @@ ipcMain.on("todo:add", (event, todo) => {
 	addWindow.close();
 });
 
+function clearTodos() {
+	mainWindow.webContents.send("todo:clear");
+}
+
 const menuTemplate = [
 	{
 		label: "File",
@@ -38,6 +42,13 @@ const menuTemplate = [
 				accelerator: process.platform === "darwin" ? "Command+N" : "Ctrl+N",
 				click() {
 					createAddWindow();
+				}
+			},
+			{
+				label: "Clear todos",
+				accelerator: process.platform === "darwin" ? "Command+M" : "Ctrl+M",
+				click() {
+					clearTodos();
 				}
 			},
 			{
@@ -52,6 +63,8 @@ const menuTemplate = [
 ];
 
 if (process.platform === "darwin") {
+	// Hack for MacOS to display
+	// `View` section as a new element
 	menuTemplate.unshift({});
 }
 
