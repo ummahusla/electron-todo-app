@@ -1,6 +1,6 @@
 # 📝 electron-todo-app
 
-Simple todo app made with Electron
+Simple todo app made with Electron and VanillaJS.
 
 
 ## 🛠️ Development
