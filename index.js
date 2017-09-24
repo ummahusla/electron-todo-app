@@ -18,6 +18,12 @@ const menuTemplate = [
 		submenu: [
 			{
 				label: "New todo"
+			},
+			{
+				label: "Quit",
+				click() {
+					app.quit();
+				}
 			}
 		]
 	}
