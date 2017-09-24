@@ -5,6 +5,7 @@
 	<h1>My todos</h1>
 
 	<p>To create a new todo press Cmd + N or Ctrl + N.</p>
+	<p>To delete all todos press Cmd + M or Ctrl + M.</p>
 
 	<ul id="todo-list">
 
@@ -13,17 +14,18 @@
 	<script>
 		const electron = require("electron");
 		const { ipcRenderer } = electron;
+		const list = document.querySelector("ul");
 
 		ipcRenderer.on("todo:add", (event, todo) => {
 			const li = document.createElement("li");
 			const text = document.createTextNode(todo);
 
 			li.appendChild(text);
-			document.querySelector("ul").appendChild(li);
+			list.appendChild(li);
 		});
 
-		ipcRenderer.on("todo:clear", (event) => {
-			document.querySelector("ul").innerHTML = "";
+		ipcRenderer.on("todo:clear", () => {
+			list.innerHTML = "";
 		});
 	</script>
 </body>
